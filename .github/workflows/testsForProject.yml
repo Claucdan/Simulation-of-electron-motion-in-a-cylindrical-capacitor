@@ -13,7 +13,7 @@ jobs:
         run:  cmake --build ${{github.workspace}}/Actions --target all -j 6
 
       - name: Testing
-        run:  ctest --test-dir ${{github.workspace}}/Actions --output-on-failure --extra-verbose
+        run:  ctest --output-on-failure --extra-verbose
 
       - name: Result
         run: echo All work!!!
