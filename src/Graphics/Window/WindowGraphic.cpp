@@ -53,12 +53,15 @@ WNDCLASSW graphics::Window::NewWindow(HBRUSH BGColor, HCURSOR Cursor, HINSTANCE 
 
 void graphics::Window::Show(int nCmdShow) {
     ShowWindow(_hwnd, nCmdShow);
+    EnableOpenGL(_hwnd, &_hdc, &_hglrc);
     _isShowed = true;
 }
 
 void graphics::Window::Stop() {
-    if(_isShowed)
+    if(_isShowed) {
+        DisableOpenGL(_hwnd, _hdc, _hglrc);
         DestroyWindow(_hwnd);
+    }
     _isShowed = false;
 }
 
@@ -79,14 +82,50 @@ void graphics::Window::ReactToMessage() {
     }
 }
 
-void graphics::Window::DrawObject(graphics::GraphicsObject *object) {
-    if(_isShowed && _openGLEnable)
+void graphics::Window::DrawObject(graphicsObjects::GraphicsObject *object) {
+    if(_isShowed)
         object->DrawInWindow();
 }
 
-void graphics::Window::DrawListOfObjects(graphics::GraphicsObject **start, size_t countOfObjects) {
-    GraphicsObject** pObject = start;
+void graphics::Window::DrawListOfObjects(graphicsObjects::GraphicsObject **start, size_t countOfObjects) {
+    graphicsObjects::GraphicsObject** pObject = start;
     for(size_t i = 0; i < countOfObjects; ++i){
         (*pObject)->DrawInWindow();
     }
+}
+
+void graphics::Window::EnableOpenGL(HWND hwnd, HDC *hdc, HGLRC *hRC) {
+    PIXELFORMATDESCRIPTOR pfd;
+
+    int iFormat;
+
+/* get the device context (DC) */
+    *hdc = GetDC(hwnd);
+
+/* set the pixel format for the DC */
+    ZeroMemory(&pfd, sizeof(pfd));
+
+    pfd.nSize = sizeof(pfd);
+    pfd.nVersion = 1;
+    pfd.dwFlags = PFD_DRAW_TO_WINDOW |
+                  PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+    pfd.iPixelType = PFD_TYPE_RGBA;
+    pfd.cColorBits = 24;
+    pfd.cDepthBits = 16;
+    pfd.iLayerType = PFD_MAIN_PLANE;
+
+    iFormat = ChoosePixelFormat(*hdc, &pfd);
+
+    SetPixelFormat(*hdc, iFormat, &pfd);
+
+/* create and enable the render context (RC) */
+    *hRC = wglCreateContext(*hdc);
+
+    wglMakeCurrent(*hdc, *hRC);
+}
+
+void graphics::Window::DisableOpenGL(HWND hwnd, HDC hDC, HGLRC hRC) {
+    wglMakeCurrent(NULL, NULL);
+    wglDeleteContext(hRC);
+    ReleaseDC(hwnd, hDC);
 }

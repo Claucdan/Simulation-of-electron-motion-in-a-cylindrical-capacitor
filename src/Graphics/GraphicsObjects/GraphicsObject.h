@@ -1,9 +1,7 @@
 #ifndef SIMULATION_GRAPHICSOBJECT_H
 #define SIMULATION_GRAPHICSOBJECT_H
 
-#include "WindowGraphic.h"
-
-namespace graphics {
+namespace graphicsObjects {
 
     class GraphicsObject {
     public:

@@ -2,8 +2,8 @@
 #define SIMULATION_WINDOWGRAPHIC_H
 
 #include <windows.h>
-#include "GraphicsObject.h"
-#include <iterator>
+#include <GraphicsObject.h>
+#include <gl/GL.h>
 
 namespace graphics{
 
@@ -16,9 +16,10 @@ namespace graphics{
         HWND _hwnd;
 
         bool _isShowed = false;
-        bool _openGLEnable = false;
     protected:
         WNDCLASSW NewWindow(HBRUSH BGColor, HCURSOR Cursor, HINSTANCE hInst, HICON Icon, LPCWSTR Name, WNDPROC Proced);
+        void EnableOpenGL(HWND hwnd, HDC* hdc, HGLRC* hRC);
+        void DisableOpenGL(HWND hwnd, HDC hDC, HGLRC hRC);
 
 
     public:
@@ -26,8 +27,8 @@ namespace graphics{
         void Show(int nCmdShow);
         void ReactToMessage();
         bool IsShowed();
-        void DrawObject(GraphicsObject* object);
-        void DrawListOfObjects(GraphicsObject** start, size_t countOfObjects);
+        void DrawObject(graphicsObjects::GraphicsObject* object);
+        void DrawListOfObjects(graphicsObjects::GraphicsObject** start, size_t countOfObjects);
         void Stop();
 
     };
