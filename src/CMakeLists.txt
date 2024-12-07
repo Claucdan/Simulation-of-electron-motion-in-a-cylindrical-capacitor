@@ -1,1 +1,3 @@
 add_subdirectory(PhysicalCalculations)
+add_subdirectory(Graphics)
+add_subdirectory(Mapper)
