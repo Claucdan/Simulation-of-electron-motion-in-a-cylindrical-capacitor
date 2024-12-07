@@ -8,12 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Prepare
-        run: cmake -S . -B ${{github.workspace}}
-
       - name: Build
-        # Build your program with the given configuration
-        run:  cmake --build ${{github.workspace}} --target all -j 6
+        run: cmake -S . -B ${{github.workspace}}
 
       - name: Testing
         run:  ctest --output-on-failure --extra-verbose
