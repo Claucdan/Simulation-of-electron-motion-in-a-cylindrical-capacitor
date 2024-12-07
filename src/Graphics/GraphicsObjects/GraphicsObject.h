@@ -5,6 +5,7 @@ namespace graphicsObjects {
 
     class GraphicsObject {
     public:
+        virtual void Configure() = 0;
         virtual void DrawInWindow() = 0;
     };
 
