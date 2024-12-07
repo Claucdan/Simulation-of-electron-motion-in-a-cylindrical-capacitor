@@ -82,7 +82,7 @@ void graphics::Window::ReactToMessage() {
     }
 }
 
-void graphics::Window::DrawObject(graphicsObjects::GraphicsObject *object) {
+void graphics::Window::DrawObject(graphicsObjects::IGraphicsObject *object) {
     if(!_isShowed)
         return;
 
@@ -95,11 +95,18 @@ void graphics::Window::DrawObject(graphicsObjects::GraphicsObject *object) {
     SwapBuffers(_hdc);
 }
 
-void graphics::Window::DrawListOfObjects(graphicsObjects::GraphicsObject **start, size_t countOfObjects) {
-    graphicsObjects::GraphicsObject** pObject = start;
+void graphics::Window::DrawListOfObjects(graphicsObjects::IGraphicsObject **start, size_t countOfObjects) {
+    graphicsObjects::IGraphicsObject** pObject = start;
+    glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     for(size_t i = 0; i < countOfObjects; ++i){
-        (*pObject)->DrawInWindow();
+        glPushMatrix();
+            (*pObject)->Configure();
+            (*pObject)->DrawInWindow();
+        glPopMatrix();
+        ++pObject;
     }
+    SwapBuffers(_hdc);
 }
 
 void graphics::Window::EnableOpenGL(HWND hwnd, HDC *hdc, HGLRC *hRC) {

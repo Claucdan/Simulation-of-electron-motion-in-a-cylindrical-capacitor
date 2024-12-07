@@ -1,12 +1,11 @@
 #ifndef SIMULATION_CHARTFORYX_H
 #define SIMULATION_CHARTFORYX_H
 
-#include "GraphicsObject.h"
-#include <GL/gl.h>
+#include "IGraphicsObject.h"
 
 namespace graphicsObjects {
 
-    class ChartForYx : public GraphicsObject {
+    class ChartForYx : public IGraphicsObject {
     public:
         void Configure() override;
         void DrawInWindow() override;
