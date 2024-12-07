@@ -1,5 +1,5 @@
 add_library(
-        CalculationOfPotential
+        CalculationOfPotential STATIC
         potential.h
         potential.cpp
 )

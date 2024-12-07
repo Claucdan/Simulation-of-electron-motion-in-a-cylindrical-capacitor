@@ -10,4 +10,5 @@ target_link_libraries(GTest::GTest INTERFACE gtest_main)
 
 if(BUILD_TESTING)
     add_subdirectory(testsForPhysicalCalculations)
+    add_subdirectory(testsForGraphics)
 endif ()
