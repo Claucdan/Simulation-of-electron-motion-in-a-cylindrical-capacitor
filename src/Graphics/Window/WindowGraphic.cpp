@@ -83,8 +83,16 @@ void graphics::Window::ReactToMessage() {
 }
 
 void graphics::Window::DrawObject(graphicsObjects::GraphicsObject *object) {
-    if(_isShowed)
+    if(!_isShowed)
+        return;
+
+    glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    object->Configure();
+    glPushMatrix();
         object->DrawInWindow();
+    glPopMatrix();
+    SwapBuffers(_hdc);
 }
 
 void graphics::Window::DrawListOfObjects(graphicsObjects::GraphicsObject **start, size_t countOfObjects) {
