@@ -1,0 +1,24 @@
+name: Testing
+run-name: ${{ github.actor }} push in github some new
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure Test
+        run: |
+          cd   ${{github.workspace}}/Actions
+          cmake -S . -B ${{github.workspace}}/Actions
+
+      - name: Build Test
+        # Build your program with the given configuration
+        run:  cmake --build ${{github.workspace}}/Actions -j 12
+
+      - name: Testing
+        run:  ctest --test-dir ${{github.workspace}}/Actions --output-on-failure -j12
+
+      - name: Result
+        run: echo All work!!!
