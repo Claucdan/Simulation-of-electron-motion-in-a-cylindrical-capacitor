@@ -10,7 +10,7 @@ jobs:
 
       - name: Build
         # Build your program with the given configuration
-        run:  cmake --build ${{github.workspace}}/Actions --target all -j 6
+        run:  cmake --build ${{github.workspace}}/cmake --target all -j 6
 
       - name: Testing
         run:  ctest --output-on-failure --extra-verbose
