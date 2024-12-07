@@ -8,11 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Configure project
+        run: cmake -S . -B ${{github.workspace}}/cmake
+
       - name: Build
-        run: cmake --build . --target all
+        run: cmake --build ${{github.workspace}}/cmake. --target all
 
       - name: Testing
-        run:  ctest --output-on-failure --extra-verbose
+        run:  ctest --test-dir ${{github.workspace}}/cmake --output-on-failure --extra-verbose
 
       - name: Result
         run: echo All work!!!
