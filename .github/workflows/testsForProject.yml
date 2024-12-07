@@ -1,6 +1,6 @@
 name: Testing
 run-name: ${{ github.actor }} push in github some new
-on: [push]
+on: [pull_request]
 jobs:
   build:
     runs-on: windows-latest
