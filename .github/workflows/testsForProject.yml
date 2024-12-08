@@ -9,12 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: openrndr/setup-opengl@v1.1
+      - run: xvfb-run glxinfo
 
 
       - name: Configure project
-        run: |
-          xvfb-run glxinfo  
-          cmake -S .
+        run: cmake -S .
 
       - name: Build
         run: cmake --build .
