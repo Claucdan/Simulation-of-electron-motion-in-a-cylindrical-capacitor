@@ -1,0 +1,4 @@
+add_subdirectory(testForChartOfYx)
+add_subdirectory(testForChartAy)
+add_subdirectory(testForChartVy)
+add_subdirectory(testForChartYt)
