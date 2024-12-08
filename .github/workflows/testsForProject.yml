@@ -5,11 +5,16 @@ jobs:
   build:
     runs-on: windows-latest
 
+
     steps:
       - uses: actions/checkout@v3
+      - uses: openrndr/setup-opengl@v1.1
+
 
       - name: Configure project
-        run: cmake -S .
+      - run: |
+          xvfb-run glxinfo  
+          cmake -S .
 
       - name: Build
         run: cmake --build .
