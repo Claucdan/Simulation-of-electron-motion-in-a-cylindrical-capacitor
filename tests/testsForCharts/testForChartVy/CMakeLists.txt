@@ -10,4 +10,5 @@ target_link_libraries(
         GraphicsObjects
 )
 
+include(GoogleTest)
 gtest_discover_tests(TestChartVy)
