@@ -1,5 +1,5 @@
 name: Testing
-run-name: ${{ github.actor }} push in github some new
+run-name: ${{ github.actor }} want merge to master
 on: [pull_request]
 jobs:
   build:
