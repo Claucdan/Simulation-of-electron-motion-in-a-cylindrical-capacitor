@@ -7,7 +7,6 @@ namespace graphicsObjects {
 
     class IGraphicsObject {
     public:
-        virtual void Configure() = 0;
         virtual void DrawInWindow() = 0;
     };
 

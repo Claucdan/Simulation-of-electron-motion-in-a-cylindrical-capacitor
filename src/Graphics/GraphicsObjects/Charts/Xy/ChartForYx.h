@@ -7,7 +7,6 @@ namespace graphicsObjects {
 
     class ChartForYx : public IGraphicsObject {
     public:
-        void Configure() override;
         void DrawInWindow() override;
     };
 

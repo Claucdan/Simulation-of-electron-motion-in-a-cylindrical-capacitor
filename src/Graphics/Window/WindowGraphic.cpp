@@ -88,7 +88,6 @@ void graphics::Window::DrawObject(graphicsObjects::IGraphicsObject *object) {
 
     glClearColor(0.5f, 0.5f, 0.5f, 0.5f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    object->Configure();
     glPushMatrix();
         object->DrawInWindow();
     glPopMatrix();
@@ -101,7 +100,6 @@ void graphics::Window::DrawListOfObjects(graphicsObjects::IGraphicsObject **star
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     for(size_t i = 0; i < countOfObjects; ++i){
         glPushMatrix();
-            (*pObject)->Configure();
             (*pObject)->DrawInWindow();
         glPopMatrix();
         ++pObject;

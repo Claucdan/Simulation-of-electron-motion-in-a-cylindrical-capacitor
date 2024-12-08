@@ -9,5 +9,4 @@ target_link_libraries(
         CalculationOfPotential
 )
 
-include(GoogleTest)
 gtest_discover_tests(TestForPotential)

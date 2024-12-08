@@ -6,7 +6,6 @@
 namespace graphicsObjects {
 
     class ChartForAy : public IGraphicsObject{
-        void Configure() override;
         void DrawInWindow() override;
     };
 

@@ -7,7 +7,6 @@
 namespace graphicsObjects {
 
     class ChartForVy : public IGraphicsObject{
-        void Configure() override;
         void DrawInWindow() override;
     };
 
