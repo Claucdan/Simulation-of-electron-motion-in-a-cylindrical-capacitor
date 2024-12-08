@@ -2,7 +2,7 @@
 #define SIMULATION_WINDOWGRAPHIC_H
 
 #include <windows.h>
-#include <GraphicsObject.h>
+#include <IGraphicsObject.h>
 #include <gl/GL.h>
 
 namespace graphics{
@@ -27,8 +27,8 @@ namespace graphics{
         void Show(int nCmdShow);
         void ReactToMessage();
         bool IsShowed();
-        void DrawObject(graphicsObjects::GraphicsObject* object);
-        void DrawListOfObjects(graphicsObjects::GraphicsObject** start, size_t countOfObjects);
+        void DrawObject(graphicsObjects::IGraphicsObject* object);
+        void DrawListOfObjects(graphicsObjects::IGraphicsObject** start, size_t countOfObjects);
         void Stop();
 
     };
