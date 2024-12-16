@@ -12,6 +12,7 @@ target_link_libraries(
         Window PRIVATE
         ${OPENGL_LIBRARIES}
         GraphicsObjects
+        CalculationOfPotential
 )
 
 target_include_directories(
