@@ -19,5 +19,19 @@ namespace graphicsObjects {
             glVertex2f(x1,y1);
             glVertex2f(x3,y3);
         glEnd();
+
+        DrawPoints();
+    }
+
+    void ChartForYt::DrawPoints() {
+        if (time<425)
+            points.push_back({time++, _model->GetCoordinate()._y});
+        glColor3f(1.0f, 1.0f, 0.0f);
+        glPointSize(1.0f);
+        for(auto i:points){
+            glBegin(GL_POINTS);
+            glVertex2f(i._x*_scaleT + 0.45f,i._y*_scaleY - 0.6f);
+            glEnd();
+        }
     }
 } // graphicsObjects

@@ -1,7 +1,3 @@
-//
-// Created by dania on 07.12.2024.
-//
-
 #include "ChartForAy.h"
 
 namespace graphicsObjects {
@@ -23,5 +19,19 @@ namespace graphicsObjects {
             glVertex2f(x1,y1);
             glVertex2f(x3,y3);
         glEnd();
+
+        DrawPoints();
+    }
+
+    void ChartForAy::DrawPoints() {
+        if(time++<500 && _model->SpeedVy() != 0)
+            points.push_back({(float)time, 0.35f});
+        glColor3f(1.0f, 1.0f, 0.0f);
+        glPointSize(1.0f);
+        for(auto i:points){
+            glBegin(GL_POINTS);
+            glVertex2f(i._x * (0.3f/450) + 0.45f,i._y);
+            glEnd();
+        }
     }
 } // graphicsobjects

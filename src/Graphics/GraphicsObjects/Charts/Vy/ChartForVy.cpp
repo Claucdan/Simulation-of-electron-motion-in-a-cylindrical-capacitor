@@ -19,5 +19,21 @@ namespace graphicsObjects {
             glVertex2f(x1,y1);
             glVertex2f(x3,y3);
         glEnd();
+
+        DrawPoints();
+    }
+
+    void ChartForVy::DrawPoints() {
+        if(time<380) {
+            points.push_back({time++, _model->SpeedVy()});
+        }
+        glColor3f(1.0f, 1.0f, 0.0f);
+        glPointSize(1.0f);
+        for(auto i:points){
+            glBegin(GL_POINTS);
+            glVertex2f(i._x*_scaleT - 0.15f,i._y*_scaleV + 0.2f);
+            glEnd();
+        }
+
     }
 } // graphicsObjects

@@ -9,6 +9,8 @@ add_library(
         Charts/Ay/ChartForAy.cpp
         Charts/Yt/ChartForYt.cpp
         Charts/Yt/ChartForYt.h
+        Models/Model.h
+        Models/Model.cpp
 )
 
 find_package(OpenGL REQUIRED)
@@ -17,6 +19,7 @@ include_directories(${OPENGL_INCLUDE_DIRS})
 target_link_libraries(
         GraphicsObjects PRIVATE
         ${OPENGL_LIBRARIES}
+        CalculationOfPotential
 )
 
 target_include_directories(
